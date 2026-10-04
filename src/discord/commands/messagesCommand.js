@@ -51,7 +51,7 @@ module.exports = {
     const action = interaction.options.getString('action');
     
     switch (action) {
-      case "toggle_filter":
+      case "toggle_filter": {
         config.discord.other.filterMessages = !config.discord.other.filterMessages;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -62,8 +62,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [filterEmbed] });
         break;
+      }
         
-      case "toggle_join":
+      case "toggle_join": {
         config.discord.other.joinMessage = !config.discord.other.joinMessage;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -74,8 +75,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [joinEmbed] });
         break;
+      }
         
-      case "set_mode":
+      case "set_mode": {
         const mode = interaction.options.getString('mode');
         if (!mode) {
           return await interaction.followUp({ content: "❌ Please specify a message mode!", ephemeral: true });
@@ -91,8 +93,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [modeEmbed] });
         break;
+      }
         
-      case "set_format":
+      case "set_format": {
         const format = interaction.options.getString('format');
         if (!format) {
           return await interaction.followUp({ content: "❌ Please specify a message format!", ephemeral: true });
@@ -108,8 +111,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [formatEmbed] });
         break;
+      }
         
-      case "status":
+      case "status": {
         const statusEmbed = new Embed()
           .setTitle("💬 Message Settings")
           // New way (works)
@@ -124,7 +128,7 @@ module.exports = {
         
         await interaction.followUp({ embeds: [statusEmbed] });
         break;
+      }
     }
   }
 };
-

@@ -47,7 +47,7 @@ module.exports = {
     const event = interaction.options.getString('event');
     
     switch (action) {
-      case "toggle_all":
+      case "toggle_all": {
         config.minecraft.skyblockEventsNotifications.enabled = !config.minecraft.skyblockEventsNotifications.enabled;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -58,8 +58,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [embed] });
         break;
+      }
         
-      case "toggle_event":
+      case "toggle_event": {
         if (!event) {
           return await interaction.followUp({ content: "❌ Please specify an event!", ephemeral: true });
         }
@@ -75,8 +76,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [eventEmbed] });
         break;
+      }
         
-        case "status":
+        case "status": {
           const statusEmbed = new Embed()
             .setTitle("📅 Event Notifications Status")
             .addFields(
@@ -94,6 +96,7 @@ module.exports = {
           statusEmbed.setColor(0x00aaff);
           await interaction.followUp({ embeds: [statusEmbed] });
           break;
+        }
     }
   }
 };

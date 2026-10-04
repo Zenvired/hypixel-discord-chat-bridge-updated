@@ -155,22 +155,8 @@ async function sendPowderNotification(eventBOT, eventData, isFirstCheck = false)
   try {
     const powderConfig = config.minecraft.skyblockEventsNotifications.doublePowder;
     
-    if (eventData.hasDoublePowder) {
-      if (!isFirstCheck) {
-        let message = `[POWDER] Double Powder started!`;
-        
-        if (eventData.percentage) {
-          message += ` ${eventData.percentage}% coverage`;
-        }
-        
-        if (eventData.timeRemaining) {
-          message += `, ends in ${eventData.timeRemaining}`;
-        }
-      }
-   } else {
-      if (!isFirstCheck && !powderConfig.quietMode) {
-        eventBOT.send(`[POWDER] Double Powder event ended`);
-      }
+    if (!eventData.hasDoublePowder && !isFirstCheck && !powderConfig.quietMode) {
+      eventBOT.send(`[POWDER] Double Powder event ended`);
     }
   } catch (error) {
     console.error("Error sending powder notification:", error.message);

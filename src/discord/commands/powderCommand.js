@@ -50,7 +50,7 @@ module.exports = {
     }
     
     switch (action) {
-      case "toggle":
+      case "toggle": {
         config.minecraft.doublePowder.enabled = !config.minecraft.doublePowder.enabled;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -61,8 +61,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [embed] });
         break;
+      }
         
-      case "username":
+      case "username": {
         const username = interaction.options.getString('username');
         if (!username) {
           return await interaction.followUp({ content: "❌ Please specify a username!", ephemeral: true });
@@ -78,8 +79,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [userEmbed] });
         break;
+      }
         
-      case "officers":
+      case "officers": {
         config.minecraft.doublePowder.notifyOfficers = !config.minecraft.doublePowder.notifyOfficers;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -90,8 +92,9 @@ module.exports = {
         
         await interaction.followUp({ embeds: [officerEmbed] });
         break;
+      }
         
-      case "quiet":
+      case "quiet": {
         config.minecraft.doublePowder.quietMode = !config.minecraft.doublePowder.quietMode;
         fs.writeFileSync('./config.json', JSON.stringify(config, null, 2));
         
@@ -102,21 +105,23 @@ module.exports = {
         
         await interaction.followUp({ embeds: [quietEmbed] });
         break;
+      }
         
-	case "status":
-	  const statusEmbed = new Embed()
-	    .setTitle("⚡ Double Powder Status")
-	    .addFields(
-	      { name: "Enabled", value: config.minecraft.doublePowder.enabled ? "✅ Yes" : "❌ No", inline: true },
-	      { name: "Username", value: config.minecraft.doublePowder.username || "Not set", inline: true },
-	      { name: "Notify Officers", value: config.minecraft.doublePowder.notifyOfficers ? "✅ Yes" : "❌ No", inline: true },
-	      { name: "Quiet Mode", value: config.minecraft.doublePowder.quietMode ? "✅ Yes" : "❌ No", inline: true },
-	      { name: "Reminders", value: config.minecraft.doublePowder.reminders.join(", ") + " minutes", inline: false }
-	    )
-	    .setColor(0x00aaff);
+      case "status": {
+        const statusEmbed = new Embed()
+          .setTitle("⚡ Double Powder Status")
+          .addFields(
+            { name: "Enabled", value: config.minecraft.doublePowder.enabled ? "✅ Yes" : "❌ No", inline: true },
+            { name: "Username", value: config.minecraft.doublePowder.username || "Not set", inline: true },
+            { name: "Notify Officers", value: config.minecraft.doublePowder.notifyOfficers ? "✅ Yes" : "❌ No", inline: true },
+            { name: "Quiet Mode", value: config.minecraft.doublePowder.quietMode ? "✅ Yes" : "❌ No", inline: true },
+            { name: "Reminders", value: config.minecraft.doublePowder.reminders.join(", ") + " minutes", inline: false }
+          )
+          .setColor(0x00aaff);
 
-	  await interaction.followUp({ embeds: [statusEmbed] });
-  	break;
+        await interaction.followUp({ embeds: [statusEmbed] });
+        break;
+      }
     }
   }
 };

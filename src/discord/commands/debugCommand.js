@@ -73,7 +73,7 @@ module.exports = {
             const currentConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
             switch (action) {
-                case 'enable':
+                case 'enable': {
                     // Enable debug mode
                     currentConfig.discord.channels.debugMode = true;
                     
@@ -104,8 +104,9 @@ module.exports = {
                     // Log the change
                     console.log(`[${new Date().toISOString()}] Debug mode ENABLED by ${interaction.user.tag} (${interaction.user.id})`);
                     break;
+                }
 
-                case 'disable':
+                case 'disable': {
                     // Disable debug mode
                     currentConfig.discord.channels.debugMode = false;
                     
@@ -136,8 +137,9 @@ module.exports = {
                     // Log the change
                     console.log(`[${new Date().toISOString()}] Debug mode DISABLED by ${interaction.user.tag} (${interaction.user.id})`);
                     break;
+                }
 
-                case 'status':
+                case 'status': {
                     // Show current status
                     const isEnabled = currentConfig.discord.channels.debugMode;
                     const statusColor = isEnabled ? 0x00ff00 : 0xff0000;
@@ -173,6 +175,7 @@ module.exports = {
 
                     await interaction.followUp({ embeds: [statusEmbed] });
                     break;
+                }
             }
             
         } catch (error) {

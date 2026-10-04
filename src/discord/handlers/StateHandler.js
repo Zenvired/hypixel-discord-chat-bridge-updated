@@ -14,9 +14,9 @@ class StateHandler {
         const weeks = Math.floor(totalSeconds / (7 * 24 * 60 * 60));
         const days = Math.floor((totalSeconds % (7 * 24 * 60 * 60)) / (24 * 60 * 60));
         const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
-	const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
 
-	  let uptimeText;
+        let uptimeText;
           if (weeks >= 1) {
               uptimeText = `${weeks}w ${days}d ${hours}h`;
           } else if (days >= 1) {
@@ -27,9 +27,9 @@ class StateHandler {
               uptimeText = `${minutes}m`;
           }
 
-	this.discord.client.user.setPresence({
-	    activities: [{ name: `Online for ${uptimeText}`}]
-	});
+        this.discord.client.user.setPresence({
+          activities: [{ name: `Online for ${uptimeText}`}]
+        });
     };
 
     updateActivity();

@@ -41,12 +41,12 @@ class CommandHandler {
       // Check if the command is disabled
       if (config.minecraft.commands.soopyDisabled && config.minecraft.commands.soopyDisabled.includes(command)) {
         const chat = officer ? "oc" : "gc";
-	if (command == "define") {
-	  bot.chat(`/${chat} [SOOPY V2] ${player} is too lazy to use a dictionary!`);
-	} else {
+        if (command == "define") {
+          bot.chat(`/${chat} [SOOPY V2] ${player} is too lazy to use a dictionary!`);
+        } else {
           bot.chat(`/${chat} [SOOPY V2] Command '${command}' is disabled`);
         }
-	return;
+        return;
       }
       
       if (isNaN(parseInt(command.replace(/[^-()\d/*+.]/g, ""))) === false) {
